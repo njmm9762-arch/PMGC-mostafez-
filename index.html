@@ -12,36 +12,37 @@
 <meta property="og:url" content="https://mitsbuy.example.com">
 
 <style>
-body { font-family:'Cairo',sans-serif; margin:0; padding:0; background:#f0f8ff; direction:rtl;}
-header { background:#0d47a1; color:white; padding:12px; text-align:center; font-size:22px; font-weight:bold; position:fixed; top:0; width:100%; z-index:1000;}
+body { font-family:'Cairo',sans-serif; margin:0; padding:0; background:#e0f7fa; direction:rtl;}
+header { background:#006064; color:white; padding:12px; text-align:center; font-size:22px; font-weight:bold; position:fixed; top:0; width:100%; z-index:1000;}
 header img { height:50px; vertical-align:middle; margin-left:10px; }
-nav { background:#062f61; padding:10px; text-align:center; position:fixed; top:70px; width:100%; z-index:999; }
-nav button { background:#0d47a1; color:white; border:none; padding:10px 15px; border-radius:6px; margin:0 5px; cursor:pointer; font-weight:bold; transition:background 0.3s;}
-nav button:hover { background:#062f61; }
+nav { background:#004d40; padding:10px; text-align:center; position:fixed; top:70px; width:100%; z-index:999; }
+nav button { background:#00796b; color:white; border:none; padding:10px 15px; border-radius:6px; margin:0 5px; cursor:pointer; font-weight:bold; transition:background 0.3s;}
+nav button:hover { background:#004d40; }
 .container { padding:150px 20px 20px 20px; max-width:1200px; margin:auto; }
-h2 { color:#0d47a1; text-align:center; margin:20px 0; font-size:28px; }
+h2 { color:#00796b; text-align:center; margin:20px 0; font-size:28px; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; margin-top:20px;}
 .product { background:#ffffff; padding:18px; border-radius:15px; box-shadow:0 6px 18px rgba(0,0,0,0.3); text-align:center; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; }
 .product:hover { transform:scale(1.08); box-shadow:0 10px 25px rgba(0,0,0,0.4); }
 .product img { width:100%; height:160px; object-fit:cover; border-radius:10px; margin-bottom:10px; }
 .price { color:#d32f2f; font-weight:bold; margin:10px 0; font-size:18px; }
-.id-input, .comment-input { margin-bottom:10px; width:90%; padding:8px; border-radius:6px; border:1px solid #0d47a1; font-size:16px; }
-.buy-btn, .vod-btn, .vod-confirm { background:#0d47a1; color:white; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; transition: background 0.3s; margin-top:5px; }
-.buy-btn:hover, .vod-btn:hover, .vod-confirm:hover { background:#062f61; }
-#intro-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:9999;}
+.id-input, .comment-input { margin-bottom:10px; width:90%; padding:8px; border-radius:6px; border:1px solid #00796b; font-size:16px; }
+.buy-btn, .vod-btn, .vod-confirm { background:#00796b; color:white; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; transition: background 0.3s; margin-top:5px; }
+.buy-btn:hover, .vod-btn:hover, .vod-confirm:hover { background:#004d40; }
+#intro-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:9999; }
 .section { display:none; }
 .section.active { display:block; }
-.vod-section { margin-top:15px; border:1px solid #0d47a1; padding:10px; border-radius:10px; background:#e3f2fd;}
+.vod-section { margin-top:10px; border:1px solid #00796b; padding:10px; border-radius:10px; background:#b2dfdb;}
 .vod-section img { width:60px; height:60px; object-fit:cover; margin-bottom:10px; }
-.vod-section p { margin:5px 0; font-weight:bold; color:#0d47a1; }
+.vod-section p { margin:5px 0; font-weight:bold; color:#004d40; }
 .vod-success { color:green; font-weight:bold; margin-top:5px; }
+.purchases { margin-top:10px; text-align:right; border-top:1px dashed #004d40; padding-top:5px; font-size:14px; }
 </style>
 </head>
 <body>
 
-<!-- فيديو البداية -->
+<!-- فيديو البداية الجديد 7 ثواني -->
 <video id="intro-video" autoplay muted>
-    <source src="VID_٢٠٢٦٠٢٠٢١٥١٩١٧.mp4" type="video/mp4">
+    <source src="VID_٢٠٢٦٠٢٠٢١٦١٦١٧.mp4" type="video/mp4">
 </video>
 
 <header>
@@ -51,7 +52,7 @@ h2 { color:#0d47a1; text-align:center; margin:20px 0; font-size:28px; }
 
 <nav>
     <button onclick="showSection('shdats')">شراء شدات</button>
-    <button onclick="showSection('cars')">كروت سيارات فردية</button>
+    <button onclick="showSection('cars')">السيارات الفردية</button>
     <button onclick="showSection('special')">كارت سيارة خاص</button>
 </nav>
 
@@ -63,9 +64,9 @@ h2 { color:#0d47a1; text-align:center; margin:20px 0; font-size:28px; }
         <div class="grid" id="shdats-grid"></div>
     </div>
 
-    <!-- قسم كروت سيارات فردية -->
+    <!-- قسم السيارات الفردية -->
     <div id="cars" class="section">
-        <h2>شراء كارت سيارات فردية - 4500 جنيه</h2>
+        <h2>شراء السيارات الفردية - 4500 جنيه</h2>
         <div class="grid" id="cars-grid"></div>
     </div>
 
@@ -78,111 +79,147 @@ h2 { color:#0d47a1; text-align:center; margin:20px 0; font-size:28px; }
 </div>
 
 <script>
-    const introVideo = document.getElementById('intro-video');
-    introVideo.onended = function() { introVideo.style.display='none'; }
+const introVideo = document.getElementById('intro-video');
+introVideo.onended = hideVideo;
+introVideo.onclick = hideVideo;
+function hideVideo(){ introVideo.style.display='none'; }
 
-    function showSection(id){
-        document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.scrollTo({top:0, behavior:'smooth'});
-    }
+function showSection(id){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+}
 
-    // بيانات الشدات (زاد 50 جنيه لكل وحدة)
-    const shdats = [
-        {name:"360 شدّة", price:100},
-        {name:"500 شدّة", price:140},
-        {name:"1000 شدّة", price:220},
-        {name:"2000 شدّة", price:380},
-        {name:"5000 شدّة", price:850},
-        {name:"10000 شدّة", price:1550},
-        {name:"50000 شدّة", price:7250},
-        {name:"100000 شدّة", price:14050},
-        {name:"560000 شدّة", price:78050}
-    ];
-
-    const shdatsGrid = document.getElementById('shdats-grid');
-    shdats.forEach(item=>{
-        const div=document.createElement('div');
-        div.className='product';
-        div.innerHTML=`
-            <img src="images.jpeg" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <div class="price">${item.price} جنيه</div>
-            <input type="text" class="id-input" placeholder="ادخل ID PUBG">
+// بيانات الشدات (+50 جنيه)
+const shdats = [
+    {name:"360 شدّة", price:100},
+    {name:"500 شدّة", price:140},
+    {name:"1000 شدّة", price:220},
+    {name:"2000 شدّة", price:380},
+    {name:"5000 شدّة", price:850},
+    {name:"10000 شدّة", price:1550},
+    {name:"50000 شدّة", price:7250},
+    {name:"100000 شدّة", price:14050},
+    {name:"560000 شدّة", price:78050}
+];
+const shdatsGrid = document.getElementById('shdats-grid');
+shdats.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='product';
+    div.innerHTML=`
+        <img src="images.jpeg" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <div class="price">${item.price} جنيه</div>
+        <input type="text" class="id-input" placeholder="ادخل ID PUBG">
+        <div>
             <button class="buy-btn" onclick="buy('شدات','${item.name}',${item.price},this)">شراء واتساب</button>
-            <div class="vod-section">
-                <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
-                <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
-                <input type="file" class="vod-input">
-                <input type="text" class="comment-input" placeholder="اكتب تعليق قصير">
-                <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
-                <div class="vod-success"></div>
-            </div>
-        `;
-        shdatsGrid.appendChild(div);
-    });
+            <button class="vod-btn" onclick="showVod(this)">فودافون كاش</button>
+        </div>
+        <div class="vod-section" style="display:none;">
+            <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
+            <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
+            <input type="file" class="vod-input">
+            <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
+            <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
+            <div class="vod-success"></div>
+            <div class="purchases"></div>
+        </div>
+    `;
+    shdatsGrid.appendChild(div);
+});
 
-    // السيارات الفردية
-    const cars = [
-        {name:"سيارة 1", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٣٥٧.jpg"},
-        {name:"سيارة 2", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٤٢٠.jpg"},
-        {name:"سيارة 3", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٥٠٠.jpg"},
-        {name:"سيارة 4", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٤٤٠.jpg"}
-    ];
-    const carsGrid=document.getElementById('cars-grid');
-    cars.forEach(item=>{
-        const div=document.createElement('div');
-        div.className='product';
-        div.innerHTML=`
-            <img src="${item.img}" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <div class="price">4500 جنيه</div>
-            <input type="text" class="id-input" placeholder="ادخل ID اللعبة">
-            <button class="buy-btn" onclick="buy('كارت سيارة','${item.name}',4500,this)">شراء واتساب</button>
-        `;
-        carsGrid.appendChild(div);
-    });
+// السيارات الفردية
+const cars = [
+    {name:"سيارة 1", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٣٥٧.jpg"},
+    {name:"سيارة 2", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٤٢٠.jpg"},
+    {name:"سيارة 3", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٥٠٠.jpg"},
+    {name:"سيارة 4", img:"IMG_٢٠٢٦٠٢٠٢_١٥٣٤٤٠.jpg"}
+];
+const carsGrid=document.getElementById('cars-grid');
+cars.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='product';
+    div.innerHTML=`
+        <img src="${item.img}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <div class="price">4500 جنيه</div>
+        <input type="text" class="id-input" placeholder="ادخل ID اللعبة">
+        <div>
+            <button class="buy-btn" onclick="buy('سيارات','${item.name}',4500,this)">شراء واتساب</button>
+            <button class="vod-btn" onclick="showVod(this)">فودافون كاش</button>
+        </div>
+        <div class="vod-section" style="display:none;">
+            <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
+            <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
+            <input type="file" class="vod-input">
+            <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
+            <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
+            <div class="vod-success"></div>
+            <div class="purchases"></div>
+        </div>
+    `;
+    carsGrid.appendChild(div);
+});
 
-    // كارت سيارة خاص
-    const specialCar = [
-        {name:"كارت سيارة خاص 1", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤٠٣٩.jpg", price:14000},
-        {name:"كارت سيارة خاص 2", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤١١٨.jpg", price:14000},
-        {name:"كارت سيارة خاص 3", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤٠٥٤.jpg", price:14000},
-        {name:"كارت سيارة خاص 4", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤١٣٥.jpg", price:14000}
-    ];
-    const specialGrid=document.getElementById('special-grid');
-    specialCar.forEach(item=>{
-        const div=document.createElement('div');
-        div.className='product';
-        div.innerHTML=`
-            <img src="${item.img}" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <div class="price">${item.price} جنيه</div>
-            <input type="text" class="id-input" placeholder="ادخل ID اللعبة">
+// كارت سيارة خاص
+const specialCar = [
+    {name:"كارت سيارة خاص 1", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤٠٣٩.jpg", price:14000},
+    {name:"كارت سيارة خاص 2", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤١١٨.jpg", price:14000},
+    {name:"كارت سيارة خاص 3", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤٠٥٤.jpg", price:14000},
+    {name:"كارت سيارة خاص 4", img:"IMG_٢٠٢٦٠٢٠٢_١٥٤١٣٥.jpg", price:14000}
+];
+const specialGrid=document.getElementById('special-grid');
+specialCar.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='product';
+    div.innerHTML=`
+        <img src="${item.img}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <div class="price">${item.price} جنيه</div>
+        <input type="text" class="id-input" placeholder="ادخل ID اللعبة">
+        <div>
             <button class="buy-btn" onclick="buy('كارت سيارة خاص','${item.name}',${item.price},this)">شراء واتساب</button>
-        `;
-        specialGrid.appendChild(div);
-    });
+            <button class="vod-btn" onclick="showVod(this)">فودافون كاش</button>
+        </div>
+        <div class="vod-section" style="display:none;">
+            <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
+            <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
+            <input type="file" class="vod-input">
+            <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
+            <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
+            <div class="vod-success"></div>
+            <div class="purchases"></div>
+        </div>
+    `;
+    specialGrid.appendChild(div);
+});
 
-    function buy(type,name,price,btn){
-        const parent=btn.parentElement;
-        const idInput=parent.querySelector('.id-input').value.trim();
-        if(!idInput){ alert('ادخل ID اللعبة أولاً'); return;}
-        let img=parent.querySelector('img').src;
-        const message=`اريد شراء ${name}\nنوع: ${type}\nالسعر: ${price} جنيه\nID اللعبة: ${idInput}\nصورة المنتج: ${img}`;
-        const whatsappURL=`https://wa.me/2001270382949?text=${encodeURIComponent(message)}`;
-        window.open(whatsappURL,'_blank');
-    }
+function buy(type,name,price,btn){
+    const parent=btn.closest('.product');
+    const idInput=parent.querySelector('.id-input').value.trim();
+    if(!idInput){ alert('ادخل ID اللعبة أولاً'); return;}
+    let img=parent.querySelector('img').src;
+    const message=`اريد شراء ${name}\nنوع: ${type}\nالسعر: ${price} جنيه\nID اللعبة: ${idInput}\nصورة المنتج: ${img}`;
+    const whatsappURL=`https://wa.me/2001270382949?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL,'_blank');
+}
 
-    function vodPay(btn){
-        const parent = btn.parentElement;
-        const fileInput = parent.querySelector('.vod-input');
-        const commentInput = parent.querySelector('.comment-input');
-        const successDiv = parent.querySelector('.vod-success');
-        if(fileInput.files.length===0){ alert('ارفع صورة الدفع'); return;}
-        let comment = commentInput.value.trim() || "أضيفت عليك";
-        successDiv.innerHTML = `✅ تم الدفع<br>${comment}`;
-    }
+function showVod(btn){
+    const vod = btn.closest('.product').querySelector('.vod-section');
+    vod.style.display = vod.style.display==='none'?'block':'none';
+}
+
+function vodPay(btn){
+    const parent = btn.closest('.vod-section');
+    const fileInput = parent.querySelector('.vod-input');
+    const commentInput = parent.querySelector('.comment-input');
+    const successDiv = parent.querySelector('.vod-success');
+    const purchasesDiv = parent.querySelector('.purchases');
+    if(fileInput.files.length===0){ alert('ارفع صورة الدفع'); return;}
+    let comment = commentInput.value.trim() || "تم الدفع";
+    successDiv.innerHTML = `✅ تم الدفع`;
+    purchasesDiv.innerHTML += `<div>💳 ${comment}</div>`;
+}
 </script>
 
 </body>
