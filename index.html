@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MITSBUY - أقوى موقع لشراء شدات وكروت سيارات</title>
+<title>MITSBUY ✅ - أقوى موقع لشراء شدات وكروت سيارات</title>
 
 <!-- Meta Tags للشيرنج -->
-<meta property="og:title" content="MITSBUY">
-<meta property="og:description" content="أقوى موقع لشراء شدات PUBG وكروت السيارات بسهولة وسرعة وأمان، يعمل على جميع الأجهزة!">
+<meta property="og:title" content="MITSBUY ✅">
+<meta property="og:description" content="أقوى موقع لشراء شدات PUBG وكروت السيارات بسهولة وسرعة وأمان!">
 <meta property="og:image" content="unnamed.webp">
 <meta property="og:url" content="https://mitsbuy.example.com">
 
@@ -26,16 +26,18 @@ h2 { color:#00796b; text-align:center; margin:20px 0; font-size:28px; }
 .product img { width:100%; height:160px; object-fit:cover; border-radius:10px; margin-bottom:10px; }
 .price { color:#d32f2f; font-weight:bold; margin:10px 0; font-size:18px; }
 .id-input, .comment-input { margin-bottom:10px; width:90%; padding:8px; border-radius:6px; border:1px solid #00796b; font-size:16px; }
-.buy-btn, .vod-btn, .vod-confirm { background:#00796b; color:white; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; transition: background 0.3s; margin-top:5px; }
-.buy-btn:hover, .vod-btn:hover, .vod-confirm:hover { background:#004d40; }
+.buy-btn, .vod-btn, .vod-confirm, .popup-btn { background:#00796b; color:white; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; transition: background 0.3s; margin-top:5px; }
+.buy-btn:hover, .vod-btn:hover, .vod-confirm:hover, .popup-btn:hover { background:#004d40; }
 #intro-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:9999; }
+.skip-btn { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:#00796b; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold; }
 .section { display:none; }
 .section.active { display:block; }
-.vod-section { margin-top:10px; border:1px solid #00796b; padding:10px; border-radius:10px; background:#b2dfdb;}
-.vod-section img { width:60px; height:60px; object-fit:cover; margin-bottom:10px; }
-.vod-section p { margin:5px 0; font-weight:bold; color:#004d40; }
-.vod-success { color:green; font-weight:bold; margin-top:5px; }
-.purchases { margin-top:10px; text-align:right; border-top:1px dashed #004d40; padding-top:5px; font-size:14px; }
+.popup { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#ffffff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.5); display:none; z-index:10000; width:300px; text-align:center; }
+.popup h3 { margin-bottom:15px; color:#00796b; }
+.popup .vod-section { margin-top:10px; border:1px solid #00796b; padding:10px; border-radius:10px; background:#b2dfdb;}
+.popup .vod-section img { width:60px; height:60px; object-fit:cover; margin-bottom:10px; }
+.popup .vod-success { color:green; font-weight:bold; margin-top:5px; }
+.popup .purchases { margin-top:10px; text-align:right; border-top:1px dashed #004d40; padding-top:5px; font-size:14px; }
 </style>
 </head>
 <body>
@@ -44,10 +46,11 @@ h2 { color:#00796b; text-align:center; margin:20px 0; font-size:28px; }
 <video id="intro-video" autoplay muted>
     <source src="VID_٢٠٢٦٠٢٠٢١٦١٦١٧.mp4" type="video/mp4">
 </video>
+<button class="skip-btn" onclick="hideVideo()">تخطي الفيديو</button>
 
 <header>
     <img src="unnamed.webp" alt="MITSBUY">
-    MITSBUY
+    MITSBUY ✅
 </header>
 
 <nav>
@@ -78,11 +81,28 @@ h2 { color:#00796b; text-align:center; margin:20px 0; font-size:28px; }
 
 </div>
 
+<!-- نافذة الدفع المنبثقة -->
+<div class="popup" id="payment-popup">
+    <h3 id="popup-title">اختر طريقة الدفع</h3>
+    <button class="popup-btn" onclick="selectVod()">دفع فودافون كاش</button>
+    <button class="popup-btn" onclick="selectWA()">دفع واتساب</button>
+
+    <div class="vod-section" id="vod-section" style="display:none;">
+        <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
+        <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
+        <input type="file" class="vod-input">
+        <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
+        <button class="vod-confirm" onclick="vodPay()">تم الدفع</button>
+        <div class="vod-success"></div>
+        <div class="purchases"></div>
+    </div>
+</div>
+
 <script>
 const introVideo = document.getElementById('intro-video');
 introVideo.onended = hideVideo;
 introVideo.onclick = hideVideo;
-function hideVideo(){ introVideo.style.display='none'; }
+function hideVideo(){ introVideo.style.display='none'; document.querySelector('.skip-btn').style.display='none'; }
 
 function showSection(id){
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
@@ -112,17 +132,7 @@ shdats.forEach(item=>{
         <div class="price">${item.price} جنيه</div>
         <input type="text" class="id-input" placeholder="ادخل ID PUBG">
         <div>
-            <button class="buy-btn" onclick="buy('شدات','${item.name}',${item.price},this)">شراء واتساب</button>
-            <button class="vod-btn" onclick="showVod(this)">فودافون كاش</button>
-        </div>
-        <div class="vod-section" style="display:none;">
-            <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
-            <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
-            <input type="file" class="vod-input">
-            <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
-            <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
-            <div class="vod-success"></div>
-            <div class="purchases"></div>
+            <button class="popup-btn" onclick="openPopup('${item.name}','شدات',${item.price},this)">الدفع</button>
         </div>
     `;
     shdatsGrid.appendChild(div);
@@ -145,17 +155,7 @@ cars.forEach(item=>{
         <div class="price">4500 جنيه</div>
         <input type="text" class="id-input" placeholder="ادخل ID اللعبة">
         <div>
-            <button class="buy-btn" onclick="buy('سيارات','${item.name}',4500,this)">شراء واتساب</button>
-            <button class="vod-btn" onclick="showVod(this)">فودافون كاش</button>
-        </div>
-        <div class="vod-section" style="display:none;">
-            <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
-            <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
-            <input type="file" class="vod-input">
-            <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
-            <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
-            <div class="vod-success"></div>
-            <div class="purchases"></div>
+            <button class="popup-btn" onclick="openPopup('${item.name}','سيارات',4500,this)">الدفع</button>
         </div>
     `;
     carsGrid.appendChild(div);
@@ -178,39 +178,41 @@ specialCar.forEach(item=>{
         <div class="price">${item.price} جنيه</div>
         <input type="text" class="id-input" placeholder="ادخل ID اللعبة">
         <div>
-            <button class="buy-btn" onclick="buy('كارت سيارة خاص','${item.name}',${item.price},this)">شراء واتساب</button>
-            <button class="vod-btn" onclick="showVod(this)">فودافون كاش</button>
-        </div>
-        <div class="vod-section" style="display:none;">
-            <img src="img_5_1770038481376.jpg" alt="Vodafone Cash">
-            <p>ادفع على 01206561893 باستخدام فودافون كاش</p>
-            <input type="file" class="vod-input">
-            <input type="text" class="comment-input" placeholder="أضف تعليق قصير">
-            <button class="vod-confirm" onclick="vodPay(this)">تم الدفع</button>
-            <div class="vod-success"></div>
-            <div class="purchases"></div>
+            <button class="popup-btn" onclick="openPopup('${item.name}','كارت سيارة خاص',${item.price},this)">الدفع</button>
         </div>
     `;
     specialGrid.appendChild(div);
 });
 
-function buy(type,name,price,btn){
-    const parent=btn.closest('.product');
-    const idInput=parent.querySelector('.id-input').value.trim();
+let currentProduct=null;
+let currentType='';
+let currentPrice=0;
+
+function openPopup(name,type,price,btn){
+    currentProduct = btn.closest('.product');
+    currentType = type;
+    currentPrice = price;
+    document.getElementById('popup-title').innerText = `اختر طريقة الدفع - ${name}`;
+    document.getElementById('payment-popup').style.display='block';
+    document.getElementById('vod-section').style.display='none';
+}
+
+function selectVod(){
+    document.getElementById('vod-section').style.display='block';
+}
+
+function selectWA(){
+    if(!currentProduct) return;
+    const idInput = currentProduct.querySelector('.id-input').value.trim();
     if(!idInput){ alert('ادخل ID اللعبة أولاً'); return;}
-    let img=parent.querySelector('img').src;
-    const message=`اريد شراء ${name}\nنوع: ${type}\nالسعر: ${price} جنيه\nID اللعبة: ${idInput}\nصورة المنتج: ${img}`;
+    let img = currentProduct.querySelector('img').src;
+    const message=`اريد شراء ${currentProduct.querySelector('h3').innerText}\nنوع: ${currentType}\nالسعر: ${currentPrice} جنيه\nID اللعبة: ${idInput}\nصورة المنتج: ${img}`;
     const whatsappURL=`https://wa.me/2001270382949?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL,'_blank');
 }
 
-function showVod(btn){
-    const vod = btn.closest('.product').querySelector('.vod-section');
-    vod.style.display = vod.style.display==='none'?'block':'none';
-}
-
-function vodPay(btn){
-    const parent = btn.closest('.vod-section');
+function vodPay(){
+    const parent = document.getElementById('vod-section');
     const fileInput = parent.querySelector('.vod-input');
     const commentInput = parent.querySelector('.comment-input');
     const successDiv = parent.querySelector('.vod-success');
@@ -220,6 +222,12 @@ function vodPay(btn){
     successDiv.innerHTML = `✅ تم الدفع`;
     purchasesDiv.innerHTML += `<div>💳 ${comment}</div>`;
 }
+
+document.addEventListener('click', function(e){
+    if(e.target.classList.contains('popup-btn')) return;
+    if(e.target.closest('.popup')) return;
+    document.getElementById('payment-popup').style.display='none';
+});
 </script>
 
 </body>
